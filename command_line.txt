@@ -1,0 +1,13 @@
+1. create project
+bun init -y
+
+2. install express
+bun add express
+bun add -d @types/express (for typescript)
+
+3. install nodemon for auto restart server
+bun add -g nodemon
+
+4. run project via nodemon or bun
+nodemon --exec bun index.ts
+bun --hot index.ts
