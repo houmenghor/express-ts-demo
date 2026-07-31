@@ -1,13 +1,45 @@
-1. create project
-bun init -y
+Step 1: Initialize the project and install dependencies Note: We use tsx instead of ts-node to avoid modern TypeScript bugs.
 
-2. install express
-bun add express
-bun add -d @types/express (for typescript)
+npm init -y
+npm install express
+npm i -D typescript tsx nodemon @types/node @types/express
 
-3. install nodemon for auto restart server
-bun add -g nodemon
 
-4. run project via nodemon or bun
-nodemon --exec bun index.ts
-bun --hot index.ts
+Step 2: Create the TypeScript configuration file
+
+npx tsc --init
+
+
+Step 3: Update tsconfig.json Delete the default contents and replace them with this clean setup to avoid strict module errors:
+
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "rootDir": "./",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  }
+}
+
+
+Step 4: Create your server file Create an index.ts file in the root of your project and add your basic Express server code with app.listen().
+
+
+Step 5: Modify package.json Update your "scripts" section to use Nodemon and TSX together so the server automatically restarts when you save:
+
+"scripts": {
+  "dev": "nodemon --exec tsx index.ts"
+}
+
+
+Step 6 : install nodemon global first time only
+
+npm install -g nodemon
+
+
+Step 6 : Run the project
+
+npm run dev

@@ -1,33 +1,8 @@
-import express, {type Request, type Response} from 'express'
+import express, { Request, Response } from 'express'
 
 const app = express();
 app.use(express.json()); //convert from json obj to javascript obj
-const port:number = 8000;
-
-// interface UserParams {
-//     userId: string
-// }
-//
-// interface  UserQuery {
-//     includePost?: string,
-//     limit?: string
-// }
-
-// 2. Apply the generic: Request<Params, ResBody, ReqBody, ReqQuery>
-// app.get('/user/:userId', (req: Request<UserParams, UserQuery >, res: Response)=> {
-//     const userId = req.params.userId;
-//
-//     const limit = req.query.limit || 30;
-//     const includePost = req.query.includePost;
-//     res.send(`Fetching user ${userId}. Limit: ${limit}. Include Post: ${includePost}`)
-// });
-
-// 1. route parameters
-// app.get('/user/:userId', (req: Request<UserParams>, res: Response)=> {
-//     const userId = req.params.userId;
-//     res.send(`You requested the user with ID: ${userId}`);
-//     console.log(userId);
-// })
+const port:number = 8080;
 
 interface User {
     id: number,
@@ -40,6 +15,7 @@ interface UserIdParam {
     id: string;
 }
 
+// array object to store users
 const users: User[] = [
     // {
     //     id: 1,
@@ -149,5 +125,5 @@ app.delete('/users/:id', (req: Request<UserIdParam, any>, res: Response) => {
 
 
 app.listen(port,() => {
-     console.log(`Server running on port: ${port}`);
+     console.log(`Server running on: http://localhost:${port}`);
 });
